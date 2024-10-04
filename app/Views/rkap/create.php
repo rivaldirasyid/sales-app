@@ -1,5 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.10.5/dist/autoNumeric.min.js"></script>
 
 <div class="row">
     <div class="col-md-12 grid-margin">
@@ -57,9 +58,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="target_revenue">Target Revenue (Rp)</label>
-                        <input type="number" name="target_revenue" id="target_revenue"
-                            class="form-control custom-input-height" required>
+                        <label for="target_revenue">Target Revenue</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-primary text-white">Rp</span>
+                            </div>
+                            <input type="text" class="form-control" id="target_revenue" name="target_revenue"
+                                placeholder="Target Revenue" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary custom-button-height">Submit</button>
@@ -69,5 +78,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    new AutoNumeric('#target_revenue', {
+        digitGroupSeparator: '.',
+        decimalCharacter: ',',
+        decimalPlaces: 2, // Jumlah desimal yang ingin ditampilkan
+        unformatOnSubmit: true // Menjadikan input nilai bersih ketika dikirimkan
+    });
+</script>
 
 <?= $this->endSection() ?>

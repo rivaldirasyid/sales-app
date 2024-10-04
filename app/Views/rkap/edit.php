@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
-
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.10.5/dist/autoNumeric.min.js"></script>
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="row">
@@ -60,19 +60,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="target_revenue">Target Revenue (Rp)</label>
-                        <input type="number" name="target_revenue" id="target_revenue"
-                            class="form-control custom-input-height" value="<?= esc($rkap['target_revenue']) ?>"
-                            required>
+                        <label for="target_revenue">Target Revenue</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-primary text-white">Rp</span>
+                            </div>
+                            <input type="text" class="form-control" id="target_revenue" name="target_revenue"
+                                value="<?= esc($rkap['target_revenue']) ?>" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="actual_revenue">Actual Revenue (Rp)</label>
-                        <input type="number" name="actual_revenue" id="actual_revenue"
-                            class="form-control custom-input-height" value="<?= esc($rkap['actual_revenue']) ?>"
-                            placeholder="Isi jika ingin mengubah actual revenue" required>
+                        <label for="actual_revenue">Actual Revenue</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-primary text-white">Rp</span>
+                            </div>
+                            <input type="text" class="form-control" id="actual_revenue" name="actual_revenue"
+                                value="<?= esc($rkap['actual_revenue']) ?>" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                     </div>
-
 
                     <button type="submit" class="btn btn-primary custom-button-height">Update</button>
                     <a href="<?= base_url('rkap') ?>" class="btn btn-secondary custom-button-height">Cancel</a>
@@ -81,5 +94,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    new AutoNumeric('#target_revenue', {
+        digitGroupSeparator: '.',
+        decimalCharacter: ',',
+        decimalPlaces: 2, // Jumlah desimal yang ingin ditampilkan
+        unformatOnSubmit: true // Menjadikan input nilai bersih ketika dikirimkan
+    });
+
+    new AutoNumeric('#actual_revenue', {
+        digitGroupSeparator: '.',
+        decimalCharacter: ',',
+        decimalPlaces: 2, // Jumlah desimal yang ingin ditampilkan
+        unformatOnSubmit: true // Menjadikan input nilai bersih ketika dikirimkan
+    });
+</script>
 
 <?= $this->endSection() ?>
