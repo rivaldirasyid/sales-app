@@ -64,6 +64,7 @@ class Project extends BaseController
             $query = $query->groupStart()
                 ->like('customer_name', $search)
                 ->orLike('prospect_scope', $search)
+                ->orLike('remarks', $search)
                 ->groupEnd();
         }
 

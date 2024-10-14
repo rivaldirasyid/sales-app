@@ -76,6 +76,7 @@ class Rkap extends BaseController
         } else {
             // Jika tidak, gunakan nilai otomatis
             $actualRevenue = $totalActualRevenue;
+
         }
 
         // Jika data sudah ada, update, jika belum insert data baru
